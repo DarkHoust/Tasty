@@ -23,14 +23,44 @@ struct RecipeDetailView: View {
                 
                 ScrollView {
                     VStack(alignment: .leading) {
+                        if let imageUrl = URL(string: recipeDetail.image) {
+                                            AsyncImage(url: imageUrl) { phase in
+                                                switch phase {
+                                                case .empty:
+                                                    ProgressView()
+                                                case .success(let image):
+                                                    image
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fill)
+                                                        .frame(maxWidth: .infinity)
+                                                        .frame(height: 250)
+                                                        .clipped()
+                                                case .failure:
+                                                    Image(systemName: "photo")
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fill)
+                                                        .frame(maxWidth: .infinity)
+                                                        .frame(height: 250)
+                                                        .clipped()
+                                                @unknown default:
+                                                    EmptyView()
+                                                }
+                                            }
+                                        }
+                        
                         Text("Ingredients")
                             .font(.title2)
                             .padding(.bottom, 5)
                         
-                        ForEach(recipeDetail.extendedIngredients, id: \.id) { ingredient in
-                            Text(ingredient.original)
-                                .padding(.bottom, 2)
-                        }
+                        VStack(alignment: .leading) {
+                                                    ForEach(recipeDetail.extendedIngredients, id: \.id) { ingredient in
+                                                        HStack(alignment: .top) {
+                                                            Text("•")
+                                                            Text(ingredient.original)
+                                                        }
+                                                        .padding(.bottom, 2)
+                                                    }
+                                                }
                         
                         Text("Instructions")
                             .font(.title2)
@@ -48,5 +78,6 @@ struct RecipeDetailView: View {
                     }
             }
         }
+        .padding()
     }
 }
