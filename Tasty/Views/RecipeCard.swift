@@ -3,6 +3,7 @@ import SwiftUI
 struct RecipeCard: View {
     let result: Result
     @State private var isBookmarked: Bool = false
+    @State private var showDetailView: Bool = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -42,7 +43,6 @@ struct RecipeCard: View {
                     }
                     .padding([.trailing, .bottom], 15)
                 }
-                
             }
         }
         .background(Color(.systemBackground))
@@ -52,6 +52,12 @@ struct RecipeCard: View {
         .padding(.top)
         .onAppear {
             isBookmarked = checkIfBookmarked()
+        }
+        .onTapGesture {
+            showDetailView = true
+        }
+        .sheet(isPresented: $showDetailView) {
+            RecipeDetailView(recipeId: result.id)
         }
     }
     
@@ -83,11 +89,5 @@ struct RecipeCard: View {
         if let encodedBookmarks = try? JSONEncoder().encode(decodedBookmarks) {
             UserDefaults.standard.set(encodedBookmarks, forKey: "bookmarks")
         }
-    }
-}
-
-struct RecipeCard_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeCard(result: Result(id: 1, title: "Asian Soft Scrambled Eggs", image: "https://img.spoonacular.com/recipes/632884-312x231.jpg", imageType: .jpg))
     }
 }

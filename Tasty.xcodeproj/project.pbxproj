@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3220E3D12C46652300950860 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3220E3D02C46652300950860 /* Alamofire */; };
+		324DBD6E2C56706300FF4FA8 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324DBD6D2C56706300FF4FA8 /* RecipeDetailView.swift */; };
 		32B448F72C411C4C007B9651 /* TastyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B448F62C411C4C007B9651 /* TastyApp.swift */; };
 		32B448F92C411C4C007B9651 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B448F82C411C4C007B9651 /* ContentView.swift */; };
 		32B448FB2C411C4D007B9651 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32B448FA2C411C4D007B9651 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		324DBD6D2C56706300FF4FA8 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		32B448F32C411C4C007B9651 /* Tasty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32B448F62C411C4C007B9651 /* TastyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TastyApp.swift; sourceTree = "<group>"; };
 		32B448F82C411C4C007B9651 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				32BD68492C497161009C7845 /* RecipeCard.swift */,
 				32BD684B2C4977CC009C7845 /* BookmarkView.swift */,
 				32BD684E2C497A77009C7845 /* MainView.swift */,
+				324DBD6D2C56706300FF4FA8 /* RecipeDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				32B449182C412572007B9651 /* RecipeResultsView.swift in Sources */,
 				32B449112C411F3C007B9651 /* NetworkManager.swift in Sources */,
 				32B449152C41254D007B9651 /* IngredientView.swift in Sources */,
+				324DBD6E2C56706300FF4FA8 /* RecipeDetailView.swift in Sources */,
 				32BD684A2C497161009C7845 /* RecipeCard.swift in Sources */,
 				32B448F92C411C4C007B9651 /* ContentView.swift in Sources */,
 				32B448F72C411C4C007B9651 /* TastyApp.swift in Sources */,
