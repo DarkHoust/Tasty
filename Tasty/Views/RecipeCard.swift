@@ -29,6 +29,7 @@ struct RecipeCard: View {
                     
                     Button(action: {
                         isBookmarked.toggle()
+                        saveBookmark()
                     }) {
                         ZStack {
                             Circle()
@@ -49,6 +50,9 @@ struct RecipeCard: View {
         .shadow(radius: 5)
         .padding(.horizontal)
         .padding(.top)
+        .onAppear {
+            isBookmarked = checkIfBookmarked()
+        }
     }
     
     private func loadImage(from urlString: String) -> UIImage {
@@ -58,6 +62,27 @@ struct RecipeCard: View {
             return UIImage(systemName: "photo")!
         }
         return image
+    }
+
+    private func checkIfBookmarked() -> Bool {
+        let bookmarks = UserDefaults.standard.object(forKey: "bookmarks") as? Data
+        let decodedBookmarks = try? JSONDecoder().decode([Result].self, from: bookmarks ?? Data())
+        return decodedBookmarks?.contains(where: { $0.id == result.id }) ?? false
+    }
+
+    private func saveBookmark() {
+        var bookmarks = UserDefaults.standard.object(forKey: "bookmarks") as? Data
+        var decodedBookmarks = (try? JSONDecoder().decode([Result].self, from: bookmarks ?? Data())) ?? []
+
+        if isBookmarked {
+            decodedBookmarks.append(result)
+        } else {
+            decodedBookmarks.removeAll { $0.id == result.id }
+        }
+
+        if let encodedBookmarks = try? JSONEncoder().encode(decodedBookmarks) {
+            UserDefaults.standard.set(encodedBookmarks, forKey: "bookmarks")
+        }
     }
 }
 

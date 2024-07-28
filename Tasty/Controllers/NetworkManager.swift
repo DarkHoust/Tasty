@@ -4,7 +4,7 @@ import Alamofire
 class NetworkManager: ObservableObject {
     static let shared = NetworkManager()
 
-    private let apiKey = "API_KEY"
+    private let apiKey = "3ea9ae2782dd4ce9a2e6b41a5d56aea9"
     private let baseURL = "https://api.spoonacular.com"
 
     @Published var recipes: [Result] = []
