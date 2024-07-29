@@ -40,7 +40,7 @@ struct RecipeResultsView: View {
     private func searchRecipes() {
         isLoading = true
         let joinedIngredients = ingredients.joined(separator: ",")
-        let apiKey = "API_KEY"
+        let apiKey = "a1f3df8895834e7392ddc0aa26f9e6f7"
         let urlString = "https://api.spoonacular.com/recipes/complexSearch?apiKey=\(apiKey)&query=\(joinedIngredients)"
         
         guard let url = URL(string: urlString) else {

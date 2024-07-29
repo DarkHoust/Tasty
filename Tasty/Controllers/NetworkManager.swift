@@ -4,7 +4,7 @@ import Alamofire
 class NetworkManager: ObservableObject {
     static let shared = NetworkManager()
 
-    private let apiKey = "3ea9ae2782dd4ce9a2e6b41a5d56aea9"
+    private let apiKey = "a1f3df8895834e7392ddc0aa26f9e6f7"
     private let baseURL = "https://api.spoonacular.com"
 
     @Published var recipes: [Result] = []
@@ -26,18 +26,25 @@ class NetworkManager: ObservableObject {
         }
     }
 
-    func fetchRecipeDetail(recipeId: Int) {
-        let endpoint = "\(baseURL)/recipes/\(recipeId)/information"
-        let parameters: [String: Any] = [
-            "apiKey": apiKey
-        ]
+    func fetchRecipeDetail(recipeId: Int, completion: @escaping (RecipeDetail?) -> Void) {
+            let endpoint = "\(baseURL)/recipes/\(recipeId)/information"
+            let parameters: [String: Any] = [
+                "apiKey": apiKey
+            ]
 
-        AF.request(endpoint, parameters: parameters).responseDecodable(of: RecipeDetail.self) { response in
-            if let result = try? response.result.get() {
-                DispatchQueue.main.async {
-                    self.recipeDetail = result
+            AF.request(endpoint, parameters: parameters).responseDecodable(of: RecipeDetail.self) { response in
+                switch response.result {
+                case .success(let result):
+                    DispatchQueue.main.async {
+                        completion(result)
+                    }
+                case .failure(let error):
+                    // Optionally handle the error (e.g., log it or notify the user)
+                    print("Failed to fetch recipe detail: \(error.localizedDescription)")
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                 }
             }
         }
-    }
 }

@@ -9,11 +9,16 @@ struct BookmarkView: View {
                 .font(.largeTitle)
                 .bold()
                 .padding(.top, 16)
-            
+
             ScrollView {
                 LazyVStack {
                     ForEach(bookmarks, id: \.id) { result in
                         RecipeCard(result: result)
+                            .background(Color.clear)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                print("Recipe Card tapped: \(result.title)")
+                            }
                     }
                 }
             }

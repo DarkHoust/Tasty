@@ -12,7 +12,7 @@ struct Recipe: Codable {
 }
 
 // MARK: - Result
-struct Result: Codable, Identifiable {
+struct Result: Codable, Identifiable, Equatable {
     let id: Int
     let title: String
     let image: String

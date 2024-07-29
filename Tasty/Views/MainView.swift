@@ -17,7 +17,7 @@ struct MainView: View {
                 Text("Hello, User")
                     .font(.largeTitle)
                     .bold()
-                    .frame(width: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 16)
 
                 Text("What are you cooking today?")
@@ -32,7 +32,7 @@ struct MainView: View {
                     }
                 }
             }
-            .frame(width: .infinity)
+            .frame(maxWidth: .infinity)
             .padding(.horizontal)
             .onAppear {
                 networkManager.searchRecipes(query: "")
@@ -41,10 +41,10 @@ struct MainView: View {
     }
 }
 
-
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
     }
 }
+
 
